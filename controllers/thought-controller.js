@@ -35,7 +35,7 @@ const thoughtController = {
             res.json(dbPizzaData);
         })
         .catch(err => res.json(err));
-},
+    },
     updateThought({params, body}, res) {
         Thought.findByIdAndUpdate({_id: params.thoughtId}, body, {runValidators: true, new: true})
         .then(thoughtData => {
