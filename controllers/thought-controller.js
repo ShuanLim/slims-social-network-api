@@ -18,24 +18,24 @@ const thoughtController = {
                 res.status(400).json(err);
             });
     },
-    addThought({ body }, res) {
+    addThought({ params, body }, res) {
         Thought.create(body)
-            .then(({ _id }) => {
-                return User.findOneAndUpdate(
-                    { _id: params.UserId },
-                    { $push: { thoughts: _id } },
-                    { new: true }
-                );
-            })
-            .then(thoughtData => {
-                if (!thoughtData) {
-                    res.status(404).json({ message: 'Thought data is incorrect.' });
-                    return;
-                }
-                res.json(dbPizzaData);
-            })
-            .catch(err => res.json(err));
-    },
+        .then(({ _id }) => {
+            return User.findOneAndUpdate(
+                { _id: params.UserId },
+                { $push: { thoughts: _id } },
+                { new: true }
+            );
+        })
+        .then(thoughtData => {
+            if (!thoughtData) {
+                res.status(404).json({ message: 'Thought data is incorrect.' });
+                return;
+            }
+            res.json(dbPizzaData);
+        })
+        .catch(err => res.json(err));
+},
     updateThought({params, body}, res) {
         Thought.findByIdAndUpdate({_id: params.thoughtId}, body, {runValidators: true, new: true})
         .then(thoughtData => {
@@ -52,6 +52,36 @@ const thoughtController = {
         .then(thoughtData => {
             if (!thoughtData) {
                 res.status(404).json({ message: 'No user found with this ID!' });
+                return;
+            }
+            res.json(dbPizzaData);
+        })
+        .catch(err => res.json(err));
+    }, 
+    addReaction({params, body}, res){
+        Thought.findOneAndUpdate(
+            {_id: params.thoughtId},
+            {$push: {reactions: body}},
+            { new: true, runValidators: true }
+        )
+        .then(thoughtData => {
+            if (!thoughtData) {
+                res.status(404).json({ message: 'Incorrect reaction data!' });
+                return;
+            }
+            res.json(dbPizzaData);
+        })
+        .catch(err => res.json(err));
+    },
+    deleteReaction({params}, res){
+        Thought.findOneAndUpdate(
+            {_id: params.thoughtId},
+            {$pull: {reactions: {reactionId : params.reactionId}}},
+            { new: true, runValidators: true }
+        )
+        .then(thoughtData => {
+            if (!thoughtData) {
+                res.status(404).json({ message: 'Incorrect reaction data!' });
                 return;
             }
             res.json(dbPizzaData);
