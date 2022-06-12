@@ -10,11 +10,11 @@ app.use(express.status('public'));
 
 app.use(require('./routes'));
 
-mongoose.connect(process.env.MONGODB_URI || '', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/noSQL-project', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
 mongoose.set('debug', true);
 
-app.listen(PORT, () => console.log(`Connected to localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Connected to localhost: ${PORT}`));
