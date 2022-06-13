@@ -42,7 +42,7 @@ Run through the following instructions prior to using the application:
 - Please clone this repository or copy the code to your development environment.
 - You must have Node.js, Mongoose, Express, and MongoDB to run this app on your machine.
 
-- From the `develop` directory run commands:
+- From the root of the file, run commands:
 
 ```
 npm i
@@ -58,10 +58,11 @@ Testing the REST API can be done via Insomnia.
 
 ## Link to video demonstration
 
-<a href='placeholder'>Video Demonstration</a>
+<a href='https://drive.google.com/file/d/1MuL3Pvcs5ma6Kkz9l12xfwDKEyP-6Y1Y/view'>Part 1</a>
+<a href='https://drive.google.com/file/d/1BYOdqYS7ucJAYHR_MM50KaElrwCFyETu/view'>Part 2</a>
 
 ## Contributions
 
 <a href='https://github.com/ShuanLim'>Shuan Lim</a>
 
-Contact me via <a href='shuanmlim@gmail.com'>email</a>
+Contact me via <a href='mailto:shuanmlim@gmail.com'>email</a>
