@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const dateFormat = require('../../utils/dateFormat');
 
 const {
     getThoughts,
@@ -14,7 +13,7 @@ const {
 router.route('/')
 .get(getThoughts)
 
-router.route('/:userid')
+router.route('/:userId')
 .post(addThought)
 
 router.route('/:thoughtId')
